@@ -1,6 +1,12 @@
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	//자바 영역 > 변수 선언 > 변수 종류 ? 
+    			
+    	// 서블릿 ==JSP 
+    	int a = 10; //지역 변수이다 
+    %>
 <!DOCTYPE html>
 <html>
 <head>
