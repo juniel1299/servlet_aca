@@ -11,8 +11,9 @@
 </style>
 </head>
 <body>
-	<!-- ex14_response_2.jsp -->
-	<h1>두번째 페이지</h1>
+	<!-- ex17_session_2.jsp -->
+	<div>a: <%= session.getAttribute("a") %></div>
+	<div>b: <%= application.getAttribute("b") %></div>
 	
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script>
