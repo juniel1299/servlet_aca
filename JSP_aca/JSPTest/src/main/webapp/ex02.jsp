@@ -28,7 +28,7 @@
 	
 		1. Emmet
 			- emmet.io
-		2. Tern Project > 자바스크립트 자동완성
+		2. Tern Project > 자바스크립트 자동완성 > 안 씀 
 		
 		클라이언트 작업 vs 서버 작업
 		- 클라이언트 작업(VS Code) > 서버 작업(Eclipse)
