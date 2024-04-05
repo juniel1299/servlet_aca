@@ -1,7 +1,7 @@
 package com.test.memo;
 
-import lombok.Data;
 
+import lombok.Data;
 @Data
 public class MemoDTO {
 
