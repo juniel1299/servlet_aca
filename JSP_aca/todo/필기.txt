@@ -1,4 +1,9 @@
+
+JSP Model 2 + JDBC
+
+
 Todo List
+
 - New > "TodoList" > "todo" + web.xml
 
 - TodoList > "script.sql"

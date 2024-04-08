@@ -38,28 +38,28 @@ public class TodoDAO {
 		
 		return 0;		
 	}
-
-	//목록보기
-	public ArrayList<TodoDTO> list(){
+	
+	//목록 보기
+	public ArrayList<TodoDTO> list() {
 		
 		try {
 			
-			String sql = "select * from tblTodo";
+			String sql = "select * from tblTodo order by seq desc";
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			
 			ArrayList<TodoDTO> list = new ArrayList<TodoDTO>();
 			
-			while(rs.next()) {
-				//레코드 1개 > TodoDTO 1개 
+			while (rs.next()) {
+				//레코드 1개 > TodoDTO 1개
 				TodoDTO dto = new TodoDTO();
 				
-				dto.setRegdate(rs.getString("seq"));
+				dto.setSeq(rs.getString("seq"));
 				dto.setTodo(rs.getString("todo"));
 				dto.setState(rs.getString("state"));
 				dto.setRegdate(rs.getString("regdate"));
-			
+				
 				list.add(dto);
 			}
 			
@@ -68,38 +68,37 @@ public class TodoDAO {
 		} catch (Exception e) {
 			System.out.println("TodoDAO.list");
 			e.printStackTrace();
-			// TODO: handle exception
 		}
 		
-		return null;
+		return null;		
 	}
 	
 	
-	//할일 체크하기 (완료 여부 ) 
+	//할일 체크하기(했다. 안했다.)
 	public int checkTodo(String seq) {
+		
 		try {
 			
-			// n > y
-			// y > n
-			
+			//n > y
+			//y > n
 			String sql = "select state from tblTodo where seq = ?";
-			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, seq);
 			
 			rs = pstat.executeQuery();
 			
 			String state = "";
-			if(rs.next()) {
-			state = rs.getString("state");
+			
+			if (rs.next()) {
+				state = rs.getString("state");
 			}
 			
 			rs.close();
 			pstat.close();
 			
-			if(state.equals("y")) {
-				state= "n";
-			}else {
+			if (state.equals("y")) {
+				state = "n";
+			} else {
 				state = "y";
 			}
 			
@@ -109,17 +108,16 @@ public class TodoDAO {
 			pstat.setString(1, state);
 			pstat.setString(2, seq);
 			
-			return pstat.executeUpdate();
+			return pstat.executeUpdate();			
 			
 		} catch (Exception e) {
 			System.out.println("TodoDAO.checkTodo");
 			e.printStackTrace();
-			// TODO: handle exception
 		}
 		
-		return 0;
+		return 0;		
 	}
-	
+
 }
 
 

@@ -23,7 +23,6 @@ class DAOTest {
 		System.out.println("add");
 		assertEquals(2, result);
 		
-		
 	}
 	
 	@Test
@@ -38,18 +37,19 @@ class DAOTest {
 		assertNotNull(list);
 		
 	}
-
+	
 	
 	@Test
 	void testCheckState() {
-		TodoDAO dao = new TodoDAO();
 		
+		TodoDAO dao = new TodoDAO();
 		
 		int result = dao.checkTodo("1");
 		
-		assertEquals(1,result);
+		assertEquals(1, result);
+		
 	}
-	
+
 }
 
 

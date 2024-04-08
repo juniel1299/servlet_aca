@@ -11,8 +11,11 @@ create table tblTodo (
 
 create sequence seqTodo;
 
+select * from tblTodo;
 
-select * from tbltodo;
+delete from tblTodo;
+commit;
+
 
 
 
