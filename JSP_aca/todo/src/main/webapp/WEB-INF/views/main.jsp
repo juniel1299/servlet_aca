@@ -28,23 +28,37 @@
 	<h1 class="main">Todo List</h1>
 		
 	<table id="tbl1">
-		<c:forEach items="${list}" var="dto">
 		
-		<%-- 
+		<c:forEach items="${nlist}" var="dto">
+		<tr>
+			<td><input type="checkbox" data-seq="${dto.seq}"}></td>
+			<td>${dto.todo} <span>${dto.regdate}</span></td>
+		</tr>
+		</c:forEach>
+		<c:forEach items="${ylist}" var="dto">
+		<tr>
+			<td><input type="checkbox" checked data-seq="${dto.seq}"></td>
+			<td class="checked">${dto.todo} <span>${dto.regdate}</span></td>
+		</tr>
+		</c:forEach>
+		
+		<%-- <c:forEach items="${list}" var="dto">
+		
+		<% -- 
 		<c:if test="${dto.state == 'y'}">
 			<c:set var="checked" value="class='checked'" />
 		</c:if>
 		<c:if test="${dto.state == 'n'}">
 			<c:set var="checked" value="" />
 		</c:if> 
-		--%>
+		-- %>
 		
 		<tr>
 			<td><input type="checkbox"></td>
-			<%-- <td <c:if test="${dto.state == 'y'}">style="text-decoration: line-through;"</c:if>>${dto.todo} <span>${dto.regdate}</span></td> --%>
+			<% -- <td <c:if test="${dto.state == 'y'}">style="text-decoration: line-through;"</c:if>>${dto.todo} <span>${dto.regdate}</span></td> -- %>
 			<td ${dto.checked}>${dto.todo} <span>${dto.regdate}</span></td>
 		</tr>
-		</c:forEach>
+		</c:forEach> --%>
 	</table>
 	<hr>
 	<form method="POST" action="/todo/addok.do">
@@ -58,7 +72,22 @@
 	
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 	<script>
+	
+		$('#tbl1 tr').click(() =>{
+			//alert(event.target.nodeName);
+			//alert(event.currentTarget.nodeName);
+			//event.currentTarget.firstElementChild.firstElementchild.dataset['seq']);
+			location.href = '/todo/checkok.do?seq=' + event.currentTarget.firstElementChild.firstElementChild.dataset['seq'];
 		
+		});
+	
+		$('#tbl1 input[type=checkbox]').change(() => {
+			//alert(event.target.checked);
+			//alert(event.target.dataset['seq']);
+		
+			location.href = '/todo/checkok.do?seq=' + event.target.dataset['seq'];
+		});
+	
 	</script>
 </body>
 </html>

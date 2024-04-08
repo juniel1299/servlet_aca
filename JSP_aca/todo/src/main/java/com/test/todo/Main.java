@@ -22,18 +22,20 @@ public class Main extends HttpServlet {
 		
 		TodoDAO dao = new TodoDAO();
 		
-		ArrayList<TodoDTO> list = dao.list();
+		ArrayList<TodoDTO> nlist = dao.list("n");
+		ArrayList<TodoDTO> ylist = dao.list("y");
 		
-		for (TodoDTO dto : list) {
-			
-			//할일 1개씩 > 완료 유무?
-			if (dto.getState().equals("y")) {
-				dto.setChecked("class='checked'");
-			}
-			
-		}
+//		for (TodoDTO dto : list) {
+//			
+//			//할일 1개씩 > 완료 유무?
+//			if (dto.getState().equals("y")) {
+//				dto.setChecked("class='checked'");
+//			}
+//			
+//		}
 		
-		req.setAttribute("list", list);
+		req.setAttribute("nlist", nlist);
+		req.setAttribute("ylist", ylist);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/main.jsp");
 		dispatcher.forward(req, resp);

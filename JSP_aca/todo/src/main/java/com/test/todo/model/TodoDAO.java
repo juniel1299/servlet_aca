@@ -40,11 +40,11 @@ public class TodoDAO {
 	}
 	
 	//목록 보기
-	public ArrayList<TodoDTO> list() {
+	public ArrayList<TodoDTO> list(String state) {
 		
 		try {
 			
-			String sql = "select * from tblTodo order by seq desc";
+			String sql = String.format("select * from tblTodo where state = '%s' order by seq desc", state);
 			
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
