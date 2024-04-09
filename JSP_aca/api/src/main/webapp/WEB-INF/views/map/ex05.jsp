@@ -26,7 +26,6 @@
 	<div>
 		<input type="submit" value="마커 추가하기">
 	</div>
-	
 	<input type="hidden" name="lat">
 	<input type="hidden" name="lng">
 	</form>
@@ -49,19 +48,22 @@
 		//마커 추가하기
 		kakao.maps.event.addListener(map, 'click', function(evt) {
 			
-			
-			if(m1!=null){
+			if (m1 != null) {
 				m1.setMap(null);
 			}
 			
-			//evt.latLng
+			const path = '/api/images/pointing.png';
+			const size = new kakao.maps.Size(64, 64);
+			const op = {
+				offset: new kakao.maps.Point(0, 25)
+			};
+			const mImg = new kakao.maps.MarkerImage(path,size,op);
 			
-			
-			
-			 m1 = new kakao.maps.Marker({
+			m1 = new kakao.maps.Marker({
 				position: evt.latLng 
 			});
 			
+			m1.setImage(mImg);
 			m1.setMap(map);
 			
 			

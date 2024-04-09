@@ -48,23 +48,22 @@ public class MapDAO {
 		
 		return null;
 	}
+
 	public void add(MarkerDTO dto) {
-		// TODO Auto-generated method stub
 		
 		try {
 			
-			String sql = "insert into tblMarker values(seqMarker.nextVal,?,?)";
+			String sql = "insert into tblMarker values (seqMarker.nextVal, ?, ?)";
 			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, dto.getLat());
-			pstat.setString(1, dto.getLng());
+			pstat.setString(2, dto.getLng());
 			
 			pstat.executeUpdate();
 			
 		} catch (Exception e) {
 			System.out.println("MapDAO.add");
 			e.printStackTrace();
-			// TODO: handle exception
 		}
 		
 	}

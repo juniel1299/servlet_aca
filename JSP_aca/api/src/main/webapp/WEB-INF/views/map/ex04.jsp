@@ -57,9 +57,9 @@
 			
 			//이미지 마커 등록하기
 			const path = '/api/images/pointing.png';
-			const size = new kakao.maps.Size(32, 32);
+			const size = new kakao.maps.Size(64, 64);
 			const op = {
-				offset: new kakao.maps.Point(0, 12)
+				offset: new kakao.maps.Point(0, 25)
 			};
 			const mImg = new kakao.maps.MarkerImage(path,size,op);
 			
@@ -100,7 +100,15 @@
 		
 		//지도 이벤트(줌 인/아웃)
 		kakao.maps.event.addListener(map, 'zoom_changed', function(evt) {
-			
+			countMarker();
+		});
+		
+		//지도 이벤트(드래그)
+		kakao.maps.event.addListener(map, 'dragend', function(evt) {
+			countMarker();
+		});
+		
+		function countMarker() {
 			//$('.message').text(map.getLevel());
 			mcount = 0;
 			
@@ -113,8 +121,7 @@
 			});
 			
 			$('.message').text(mcount);
-			
-		});
+		}
 		
 		function contains(item) {
 			
