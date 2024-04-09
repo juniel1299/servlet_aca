@@ -44,7 +44,7 @@ $('#btn1').click(()=>{
 	
 	$.ajax({
 		type: 'GET',
-		url:'/ajax/ex07data.do',
+		url:'/ajax/ex07check.do',
 		
 		//전송하는 데이터(값)
 		data:'type=1',
@@ -52,7 +52,7 @@ $('#btn1').click(()=>{
 		dataType:'text',
 		
 		success:function(result){
-			
+			$('#div1').text(result);
 		},
 		error:function(a,b,c){
 			console.log(a,b,c);

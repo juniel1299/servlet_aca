@@ -38,6 +38,10 @@ public class Ex07Check extends HttpServlet{
 		
 		SurveyDTO dto = dao.get(1);
 		
+		//서버가 ajax에게 돌려주는 데이터의 형식을 지정한다 . 
+		resp.setContentType("text/plain"); //MIME
+		resp.setCharacterEncoding("UTF-8");
+		
 		PrintWriter writer = resp.getWriter();
 		writer.print(dto.getQuestion());
 		writer.close();
