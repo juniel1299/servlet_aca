@@ -162,8 +162,10 @@
 		<url-pattern>/ex08data.do</url-pattern>
 	</servlet-mapping>
 	
-
-
+	
+	
+	
+	
 	<servlet>
 		<servlet-name>ex09</servlet-name>
 		<servlet-class>com.test.ajax.Ex09</servlet-class>
@@ -181,6 +183,48 @@
 		<servlet-name>ex09data</servlet-name>
 		<url-pattern>/ex09data.do</url-pattern>
 	</servlet-mapping>
+	
+	
+	
+	
+	
+	<servlet>
+		<servlet-name>ex10</servlet-name>
+		<servlet-class>com.test.ajax.Ex10</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ex10</servlet-name>
+		<url-pattern>/ex10.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ex10data</servlet-name>
+		<servlet-class>com.test.ajax.Ex10Data</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ex10data</servlet-name>
+		<url-pattern>/ex10data.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ex10add</servlet-name>
+		<servlet-class>com.test.ajax.Ex10Add</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ex10add</servlet-name>
+		<url-pattern>/ex10add.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ex10del</servlet-name>
+		<servlet-class>com.test.ajax.Ex10Del</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ex10del</servlet-name>
+		<url-pattern>/ex10del.do</url-pattern>
+	</servlet-mapping>
+	
 	
 </web-app>
 

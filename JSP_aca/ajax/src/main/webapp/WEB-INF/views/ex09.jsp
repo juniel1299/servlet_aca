@@ -36,12 +36,15 @@
 	<script>
 	
 		let n = 1;
-		let m = 1;
+		let m = ${m + 1};
+	
 		$('#btnAdd').click(()=>{
 			
+			/* 
 			if ($('#place').html() != '') {
 				return;
-			}
+			} 
+			*/
 			
 			$('<img src="/ajax/images/catty' + String(n).padStart(2, 0) + '.png" id="cat' + m + '">')
 					.appendTo($('#place'))
@@ -49,20 +52,70 @@
 						
 						stop: function(event, ui) {
 							
-							$('#list').append(this);
+							//$('#list').append(this);
+							
+							//alert(this.id);
+							//alert(ui.position.left);
+							//alert(ui.position.top);
+							
+							$.ajax({
+								type: 'POST',
+								url: '/ajax/ex09data.do',
+								data: 'catid=' + this.id + '&x=' + ui.position.left + '&y=' + ui.position.top,
+								error: function(a,b,c) {
+									console.log(a,b,c);
+								}
+							});
 							
 						}
 						
 					});
 			
+			
+			//고양이 정보 > 서버 전송 > insert
+			$.ajax({
+				type: 'POST',
+				url: '/ajax/ex09data.do',
+				data: 'catid=cat' + m,
+				error: function(a,b,c) {
+					console.log(a,b,c);
+				}
+			});
+			
+			
 			n++;
 			m++;
-			if(n>21){
-				n=1;
+			if (n > 21) {
+				n = 1;
 			}
 			
 		});
 		
+		
+		<c:forEach items="${list}" var="dto">
+		
+		$('<img src="/ajax/images/catty01.png" id="${dto.catid}">')
+				.appendTo('#place')
+				.css({
+					left: '${dto.x}px',
+					top: '${dto.y}px'
+				})
+				.draggable({
+					stop: function(event, ui) {
+						
+						$.ajax({
+							type: 'POST',
+							url: '/ajax/ex09data.do',
+							data: 'catid=' + this.id + '&x=' + ui.position.left + '&y=' + ui.position.top,
+							error: function(a,b,c) {
+								console.log(a,b,c);
+							}
+						});
+						
+					}
+				});
+		
+		</c:forEach>
 		
 	
 	</script>

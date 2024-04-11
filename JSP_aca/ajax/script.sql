@@ -20,17 +20,79 @@ insert into tblSurvey values (1, '가장 자신있는 프로그래밍 언어는?
     
 select * from tblSurvey;
 
+update tblSurvey set
+    cnt1 = 8,
+    cnt2 = 6,
+    cnt3 = 2,
+    cnt4 = 5
+        where seq = 1;
+
+commit;
+
+
+select * from tblUser;
+
+select * from tabs;
+
+select * from tblUser;
+
+
+
+
+
+create table zipcode  (
+   seq                  NUMBER(10)                        not null,
+   zipcode              VARCHAR2(50),
+   sido                 VARCHAR2(50),
+   gugun                VARCHAR2(50),
+   dong                 VARCHAR2(50),
+   bunji                VARCHAR2(50),
+   constraint PK_ZIPCODE primary key (seq)
+);
+
+select count(*) from zipcode;
+
 commit;
 
 
 
 
---고양이 좌표 
-create table tblCat(
-    catid varchar2(50) primary key,             --img id 
+
+
+
+-- 고양이 좌표
+create table tblCat (
+    catid varchar2(50) primary key,     --<img id="cat1">
     x number not null,
     y number not null
-    );
+);
+
+select * from tblCat;
+
+insert into tblCat (catid, x, y) values ('cat15', 0, 0);
+rollback;
+
+select to_number(substr(catid, 4)) from tblCat;
+
+select max(to_number(substr(catid, 4))) from tblCat;
+
+
+
+
+select * from tblAddress;
+
+create table tblAddress (
+    seq number primary key,         --PK
+    name varchar2(30) not null,     --이름
+    age number(3) not null,         --나이
+    gender char(1) not null,        --성별(m,f)
+    address varchar2(300) not null  --주소
+);
+
+create sequence seqAddress;
+
+
+
 
 
 

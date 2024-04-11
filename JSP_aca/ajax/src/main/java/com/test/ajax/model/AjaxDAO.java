@@ -110,16 +110,18 @@ public class AjaxDAO {
 		
 		return null;
 	}
-	
-	public ArrayList<ZipcodeDTO> searchZipcode(String dong){
+
+	public ArrayList<ZipcodeDTO> searchZipcode(String dong) {
+		
 		try {
+			
 			//where dong like '%검색어%'
 			//where dong like '%' || ? || '%'
 			
-			String sql = "select * from zipcode where dong like '%' || ? || '%'";
-			
+			String sql = "select * from zipcode where dong like '%' || ? || '%' order by zipcode asc";
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1,dong);
+			pstat.setString(1, dong);
+			
 			rs = pstat.executeQuery();
 			
 			ArrayList<ZipcodeDTO> list = new ArrayList<ZipcodeDTO>();
@@ -134,19 +136,204 @@ public class AjaxDAO {
 				dto.setDong(rs.getString("dong"));
 				dto.setBunji(rs.getString("bunji"));
 				dto.setZipcode(rs.getString("zipcode"));
+				
 				list.add(dto);
 				
 			}
 			
 			return list;
 			
-			
+					
 		} catch (Exception e) {
 			System.out.println("AjaxDAO.searchZipcode");
 			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public void addCat(String catid) {
+		
+		try {
+			
+			String sql = "insert into tblCat (catid, x, y) values (?, 0, 0)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, catid);
+			
+			pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.addCat");
+			e.printStackTrace();
+		}
+		
+	}
+
+	public String getNum() {
+		
+		try {
+			
+			String sql = "select max(to_number(substr(catid, 4))) as m from tblCat";
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			if (rs.next()) {
+				return rs.getString("m");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.getNum");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public void editCat(CatDTO dto) {
+		
+		try {
+			
+			String sql = "update tblCat set x = ?, y = ? where catid = ?";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getX());
+			pstat.setString(2, dto.getY());
+			pstat.setString(3, dto.getCatid());
+			
+			pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.editCat");
+			e.printStackTrace();
+		}
+		
+	}
+
+	public ArrayList<CatDTO> listCat() {
+		
+		try {
+			
+			String sql = "select * from tblCat";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			ArrayList<CatDTO> list = new ArrayList<CatDTO>();
+			
+			while (rs.next()) {
+				CatDTO dto = new CatDTO();
+				dto.setCatid(rs.getString("catid"));
+				dto.setX(rs.getString("x"));
+				dto.setY(rs.getString("y"));
+				
+				list.add(dto);
+			}
+			
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.listCat");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	public int addAddress(AddressDTO dto) {
+		
+		try {
+			
+			String sql = "insert into tblAddress(seq,name,age,gender,address) values (seqAddress.nextVal,?,?,?,?)";
+			
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dto.getName());
+			pstat.setString(2, dto.getAge());
+			pstat.setString(3, dto.getGender());
+			pstat.setString(4, dto.getAddress());
+			
+			return pstat.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.addAddress");
+			e.printStackTrace();
 			// TODO: handle exception
 		}
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public ArrayList<AddressDTO> listAddress() {
+		try {
+			
+			String sql = "select * from tblAddress order by seq asc";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			ArrayList<AddressDTO> list = new ArrayList<AddressDTO>();
+			
+			while(rs.next()) {
+				AddressDTO dto = new AddressDTO();
+				dto.setSeq(rs.getString("seq"));
+				dto.setName(rs.getString("name"));
+				dto.setAge(rs.getString("age"));
+				dto.setGender(rs.getString("gender"));
+				dto.setAddress(rs.getString("address"));
+				
+				list.add(dto);
+			}
+			return list;
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.listAddress");
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		
 		return null;
+	}
+
+	public String getMaxSeq() {
+		
+		try {
+			
+			String sql = "select max(seq) as seq from tblAddress";
+			
+			stat = conn.createStatement();
+			rs = stat.executeQuery(sql);
+			
+			if(rs.next()) {
+				return rs.getString("seq");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.getMaxSeq");
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		
+		return null;
+	}
+
+	public int delAddress(String seq) {
+		
+		try {
+			
+			String sql = "delete from tblAddress where seq = ?";
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, seq);
+			
+			return pstat.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			System.out.println("AjaxDAO.delAddress");
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

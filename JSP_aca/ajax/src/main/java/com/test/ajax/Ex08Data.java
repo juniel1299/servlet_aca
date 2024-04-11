@@ -29,6 +29,7 @@ public class Ex08Data extends HttpServlet {
 		
 		ArrayList<ZipcodeDTO> list = dao.searchZipcode(dong);
 		
+		
 		/*
 			[
 				{
@@ -58,25 +59,24 @@ public class Ex08Data extends HttpServlet {
 		JSONArray arr = new JSONArray();
 		
 		for (ZipcodeDTO dto : list) {
-			
+						
 			//ZipcodeDTO > JSON Object
 			JSONObject obj = new JSONObject();
-			
 			
 			obj.put("seq", dto.getSeq());
 			obj.put("sido", dto.getSido());
 			obj.put("gugun", dto.getGugun());
-			obj.put("bunji", dto.getBunji()!= null ? dto.getBunji() : "");
+			obj.put("bunji", dto.getBunji() != null ? dto.getBunji() : "");
 			obj.put("dong", dto.getDong());
 			obj.put("zipcode", dto.getZipcode());
-		
+			
 			arr.add(obj);
+			
 		}
 		
 		System.out.println(arr.toString());
 		
 		PrintWriter writer = resp.getWriter();
-		
 		writer.print(arr.toString());
 		writer.close();
 		

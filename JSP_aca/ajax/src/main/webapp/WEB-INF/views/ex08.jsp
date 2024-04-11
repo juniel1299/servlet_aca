@@ -26,9 +26,7 @@
 		<tr>
 			<th>주소</th>
 			<td>
-				<select name="address1" id="address1">
-				
-				</select>
+				<select name="address1" id="address1"></select>
 			</td>
 		</tr>
 		<tr>
@@ -50,16 +48,18 @@
 				success: function(result) {
 					
 					$('#address1').html('');
+					
 					//alert(result.length);
-					result.forEach(item=>{
-						//item >> <option></option>
-						$('#address1').append(`
-								<option>[\${item.zipcode}] \${item.sido} \${item.gugun} \${item.dong} \${item.bunji}</option>
-								`);
+					
+					result.forEach(item => {
 						
-					
-					
+						//item >> <option>[123-456] 서울 강남구 </option>
+						$('#address1').append(`
+							<option>[\${item.zipcode}] \${item.sido} \${item.gugun} \${item.dong} \${item.bunji}</option>		
+						`);
+						
 					});
+					
 				},
 				error: function(a,b,c) {
 					console.log(a,b,c);
@@ -67,11 +67,11 @@
 			});
 			
 		});
-	
-		$('#address1').change(()=>{
+		
+		$('#address1').change(() => {
 			$('#address2').focus();
 		});
-		
+	
 	</script>
 </body>
 </html>
