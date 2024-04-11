@@ -25,7 +25,12 @@ commit;
 
 
 
-
+--고양이 좌표 
+create table tblCat(
+    catid varchar2(50) primary key,             --img id 
+    x number not null,
+    y number not null
+    );
 
 
 

@@ -118,7 +118,11 @@
 		<url-pattern>/ex06check.do</url-pattern>
 	</servlet-mapping>
 	
-		<servlet>
+	
+	
+	
+	
+	<servlet>
 		<servlet-name>ex07</servlet-name>
 		<servlet-class>com.test.ajax.Ex07</servlet-class>
 	</servlet>
@@ -134,6 +138,48 @@
 	<servlet-mapping>
 		<servlet-name>ex07check</servlet-name>
 		<url-pattern>/ex07check.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
+	
+	<servlet>
+		<servlet-name>ex08</servlet-name>
+		<servlet-class>com.test.ajax.Ex08</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ex08</servlet-name>
+		<url-pattern>/ex08.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ex08data</servlet-name>
+		<servlet-class>com.test.ajax.Ex08Data</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ex08data</servlet-name>
+		<url-pattern>/ex08data.do</url-pattern>
+	</servlet-mapping>
+	
+
+
+	<servlet>
+		<servlet-name>ex09</servlet-name>
+		<servlet-class>com.test.ajax.Ex09</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ex09</servlet-name>
+		<url-pattern>/ex09.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ex09data</servlet-name>
+		<servlet-class>com.test.ajax.Ex09Data</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ex09data</servlet-name>
+		<url-pattern>/ex09data.do</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
