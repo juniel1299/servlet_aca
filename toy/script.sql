@@ -62,7 +62,8 @@ case
     then to_char(regdate, 'hh24:mi:ss')
     else
     to_char(regdate,'yyyy-mm-dd')
-end regdate
+end regdate,
+(sysdate - regdate) as isnew
 from tblBoard order by seq desc;
 
 select * from vwboard;

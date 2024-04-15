@@ -30,7 +30,13 @@
 		<tr>
 		
 		<td>${dto.seq}</td>
-		<td>${dto.subject}</td>
+		<td>
+		${dto.subject}
+		<!-- 최신글 표시 -->
+		<c:if test="${dto.isnew < 1 / 24 }">
+		<span class="isnew">new</span>
+		</c:if>
+		</td>
 		<td>${dto.name}</td>
 		<td>${dto.regdate}</td>
 		<td>${dto.readcount}</td>

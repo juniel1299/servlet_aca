@@ -61,6 +61,7 @@ public class BoardDAO {
 					dto.setRegdate(rs.getString("regdate"));
 					dto.setReadcount(rs.getString("readcount"));
 					dto.setId(rs.getString("id"));
+					dto.setIsnew(rs.getDouble("isnew"));
 					
 					list.add(dto);
 				}

@@ -40,7 +40,10 @@
 	margin-bottom:1rem;
 }
 
-
+#list .isnew{
+	font-size: 14px;
+	color:tomato;
+}
 
 
 

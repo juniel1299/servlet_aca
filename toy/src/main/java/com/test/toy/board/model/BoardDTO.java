@@ -12,5 +12,6 @@ public class BoardDTO {
 	private String regdate;
 	private String readcount;
 	
-	private String name;
+	private String name; //작성자명
+	private double isnew; //최근글
 }
