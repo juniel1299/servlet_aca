@@ -39,7 +39,7 @@
 	
 	<hr>
 	
-	<div style="display: flex; justify-content: space-between;">
+	<div style="display: flex;">
 		<form method="POST" action="/toy/user/login.do">
 			<input type="hidden" name="id" value="hong">
 			<input type="hidden" name="pw" value="1111">

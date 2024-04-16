@@ -36,42 +36,83 @@ select * from tblUser;
 commit;
 
 
---게시판
-create table tblBoard(
-seq number primary key,                             --번호PK
-subject varchar2(300) not null,                     --제목
-content varchar2(4000) not null,                --내용
-id varchar2(50) not null references tblUser(id),     --작성자
-regdate date default sysdate not null,              --작성날짜
-readcount number default 0 not null                 --조회수
+-- 게시판
+create table tblBoard (
+    seq number primary key,                         --번호(PK)
+    subject varchar2(300) not null,                 --제목
+    content varchar2(4000) not null,                --내용
+    id varchar2(50) not null references tblUser(id),--아이디(FK)
+    regdate date default sysdate not null,          --작성날짜
+    readcount number default 0 not null             --조회수
 );
 
 create sequence seqBoard;
 
 select * from tblBoard;
 
-select * from tbluser;
+
+
+
 
 create or replace view vwBoard
 as
-select
-seq,subject,id,readcount,
-(select name from tblUser where id=tblBoard.id) as name,
-case
-    when to_char(sysdate,'yyyy-mm-dd') = to_char(regdate,'yyyy-mm-dd')
-    then to_char(regdate, 'hh24:mi:ss')
-    else
-    to_char(regdate,'yyyy-mm-dd')
-end regdate,
-(sysdate - regdate) as isnew
-from tblBoard order by seq desc;
+select 
+    seq, subject, id, readcount,
+    (select name from tblUser where id = tblBoard.id) as name,
+    case
+        when to_char(sysdate, 'yyyy-mm-dd') = to_char(regdate, 'yyyy-mm-dd')
+            then to_char(regdate, 'hh24:mi:ss')
+        else
+            to_char(regdate, 'yyyy-mm-dd')
+    end regdate,
+    (sysdate - regdate) as isnew,
+    content
+from tblBoard 
+    order by seq desc;
 
-select * from vwboard;
 
-update tblboard set regdate = regdate - 3 where seq = 1;
-update tblboard set regdate = regdate - 2 where seq = 2;
-update tblboard set regdate = regdate - 1 where seq = 3;
+select * from vwBoard;
+
+update tblBoard set
+    regdate = regdate - 1
+        where seq = 3;
+
 commit;
+
+select * from tblBoard order by seq desc;
+delete from tblBoard where seq = 15;
+
+
+
+
+
+select * from (select a.*, rownum as rnum from vwBoard a)
+    where rnum between 1 and 10;
+
+
+
+
+
+
+
+
+-- 댓글 테이블
+create table tblComment (
+    seq number primary key,                         --번호(PK)
+    content varchar2(2000) not null,                --댓글
+    id varchar2(50) not null references tblUser(id),--아이디(FK)
+    regdate date default sysdate not null,          --작성날짜
+    bseq number not null references tblBoard(seq)   --부모글(FK)
+);
+
+create sequence seqComment;
+
+
+
+
+
+
+
 
 
 

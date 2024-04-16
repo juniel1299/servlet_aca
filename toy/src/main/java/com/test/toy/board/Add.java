@@ -37,8 +37,7 @@ public class Add extends HttpServlet {
 		//req.setCharacterEncoding("UTF-8");
 		
 		HttpSession session = req.getSession();
-		String id= (String)session.getAttribute("id");
-		
+		String id = (String)session.getAttribute("id");
 		
 		
 		String subject = req.getParameter("subject");
@@ -56,15 +55,15 @@ public class Add extends HttpServlet {
 		
 		int result = dao.add(dto);
 		
-		if(result ==1) {
+		if (result == 1) {
 			resp.sendRedirect("/toy/board/list.do");
-		}else {
+		} else {
 			resp.setCharacterEncoding("UTF-8");
-			
 			PrintWriter writer = resp.getWriter();
 			writer.print(OutputUtil.redirect("실패했습니다."));
 			writer.close();
 		}
+		
 	}
 
 }

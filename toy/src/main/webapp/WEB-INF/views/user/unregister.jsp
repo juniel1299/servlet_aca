@@ -16,7 +16,7 @@
 	
 	<div id="main">
 		
-		<h1>회원 <small>탈퇴하기</small></h1>
+		<h1 class="sub">회원 <small>탈퇴하기</small></h1>
 		
 		<form method="POST" action="/toy/user/unregister.do">
 		<div>

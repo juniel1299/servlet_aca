@@ -16,7 +16,7 @@
 	
 	<div id="main">
 		
-		<h1 class="main">시작 <small>...</small></h1>
+		<h1 class="main">시작 <small>..</small></h1>
 		
 		<p>시작 페이지입니다.</p>
 		
