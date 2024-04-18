@@ -8,10 +8,7 @@
 <%@include file="/WEB-INF/views/inc/asset.jsp" %>
 <link rel="stylesheet" href="/toy/asset/css/tagify.css">
 <style>
-	.tagify.full {
-		border-color: #bbb;
-		border-radius: 3px;
-	}
+	
 </style>
 </head>
 <body>
@@ -46,6 +43,15 @@
 			<tr>
 				<th>장소</th>
 				<td><input type="file" name="attach" class="full" accept="image/*"></td>
+			</tr>
+			<tr>
+				<th>비밀글</th>
+				<td>
+					<label style="user-select: none;">
+						<input type="checkbox" name="secret" value="1">
+						작성자만 열람이 가능합니다.
+					</label>
+				</td>
 			</tr>
 		</table>
 		<div>

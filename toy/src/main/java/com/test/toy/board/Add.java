@@ -73,6 +73,7 @@ public class Add extends HttpServlet {
 		String content = multi.getParameter("content");
 		String reply = multi.getParameter("reply");
 		String tag = multi.getParameter("tag");
+		String secret = multi.getParameter("secret");
 		
 		
 
@@ -122,6 +123,8 @@ public class Add extends HttpServlet {
 		dto.setDepth(depth);
 		
 		dto.setAttach(multi.getFilesystemName("attach"));
+		
+		dto.setSecret(secret != null ? secret : "0");
 		
 		
 		

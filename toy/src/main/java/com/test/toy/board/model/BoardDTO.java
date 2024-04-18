@@ -1,5 +1,7 @@
 package com.test.toy.board.model;
 
+import java.util.ArrayList;
+
 import lombok.Data;
 
 @Data
@@ -21,6 +23,10 @@ public class BoardDTO {
 	private int depth;
 	
 	private String attach; //첨부파일
+	
+	private ArrayList<String> tag; //해시 태그
+	
+	private String secret; //비밀글
 
 }
 

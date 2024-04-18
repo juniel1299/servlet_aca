@@ -111,7 +111,10 @@
 	height: 300px;
 }
 
-
+.tagify.full {
+	border-color: #bbb;
+	border-radius: 3px;
+}
 
 
 

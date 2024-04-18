@@ -43,6 +43,7 @@
 			- "UserDAO.java"
 		- "com.test.toy.user.model": DB(DTO)
 			- "UserDTO.java"
+			- "LogDTO.java"
 	- 페이지
 		- "views"
 			- "index.jsp"
@@ -157,6 +158,11 @@ queryParamListReturn
 
 
 
+
+유저 활동
+1. 접속
+2. 게시물 작성
+3. 댓글 작성
 
 	
 
