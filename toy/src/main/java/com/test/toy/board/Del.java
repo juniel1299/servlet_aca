@@ -1,5 +1,6 @@
 package com.test.toy.board;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.test.toy.board.model.BoardDTO;
 import com.test.toy.board.repository.BoardDAO;
 import com.test.util.OutputUtil;
 
@@ -45,6 +47,15 @@ public class Del extends HttpServlet {
 		String seq = req.getParameter("seq");
 		
 		BoardDAO dao = new BoardDAO();
+		
+		//첨부 파일 삭제
+		BoardDTO dto = dao.get(seq);
+		
+		if (dto.getAttach() != null) {
+			File file = new File(req.getRealPath("/asset/place") + "/" + dto.getAttach());
+			file.delete();
+		}
+		
 		
 		int result = dao.del(seq);
 		

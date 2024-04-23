@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/views/inc/asset.jsp" %>
+<link rel="stylesheet" href="/toy/asset/css/tagify.css">
 <style>
 	
 </style>
@@ -16,9 +17,16 @@
 	
 	<div id="main">
 		
-		<h1 class="sub">게시판 <small>쓰기</small></h1>
+		<h1 class="sub">게시판 
+			<c:if test="${reply == 'n'}">
+			<small>쓰기</small>
+			</c:if>
+			<c:if test="${reply == 'y'}">
+			<small>답변</small>
+			</c:if>
+		</h1>
 		
-		<form method="POST" action="/toy/board/add.do">
+		<form method="POST" action="/toy/board/add.do" enctype="multipart/form-data">
 		<table class="vertical">
 			<tr>
 				<th>제목</th>
@@ -28,17 +36,46 @@
 				<th>내용</th>
 				<td><textarea name="content" id="content" required class="full"></textarea></td>
 			</tr>
+			<tr>
+				<th>태그</th>
+				<td><input type="text" name="tag" id="tag" class="full"></td>
+			</tr>
+			<tr>
+				<th>장소</th>
+				<td><input type="file" name="attach" class="full" accept="image/*"></td>
+			</tr>
+			<tr>
+				<th>비밀글</th>
+				<td>
+					<label style="user-select: none;">
+						<input type="checkbox" name="secret" value="1">
+						작성자만 열람이 가능합니다.
+					</label>
+				</td>
+			</tr>
 		</table>
 		<div>
 			<button type="button" class="back" onclick="location.href='/toy/board/list.do';">돌아가기</button>
 			<button type="submit" class="add primary">쓰기</button>
 		</div>
+		
+		<input type="hidden" name="reply" value="${reply}">
+		<input type="hidden" name="thread" value="${thread}">
+		<input type="hidden" name="depth" value="${depth}">
 		</form>
 		
 	</div>
 	
+	<script src="/toy/asset/js/tagify.min.js"></script>
 	<script>
+	
+		new Tagify(document.getElementById('tag'));
 		
+		/* window.onclick = function() {
+			//[{"value":"코딩"},{"value":"자바"},{"value":"게시판"}]
+			alert(document.getElementById('tag').value);
+		}; */
+	
 	</script>
 </body>
 </html>

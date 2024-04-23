@@ -57,11 +57,33 @@
 				<td>${dto.seq}</td>
 				<td>
 					
+					<c:if test="${dto.depth > 0}">
+					<span class="material-symbols-outlined" style="margin-left: ${dto.depth * 20}px;">subdirectory_arrow_right</span>
+					</c:if>
+								
+					<c:if test="${dto.secret == '1'}">
+					<span class="material-symbols-outlined">lock</span>			
+					</c:if>
+										
 					<!--  
 						view.do?seq=10
 						view.do?seq=10&column=subject&word=검색어&search=y
 					-->
+					<c:if test="${dto.secret == 1 and dto.id != id}">
+					<a href="#!">${dto.subject}</a>
+					</c:if>
+					
+					<c:if test="${(dto.secret == 1 and dto.id == id) || dto.secret == 0}">
 					<a href="/toy/board/view.do?seq=${dto.seq}&column=${map.column}&word=${map.word}&search=${map.search}&page=${nowPage}">${dto.subject}</a>
+					</c:if>
+					
+					<c:if test="${dto.commentcount > 0}">
+					<!-- 댓글 갯수 -->
+					<span class="commentCount">
+						<span class="material-symbols-outlined">chat</span>
+						${dto.commentcount}
+					</span>
+					</c:if>
 					
 					<!-- 최신글 표시 -->
 					<c:if test="${dto.isnew < 1 / 24}">
@@ -89,12 +111,12 @@
 		<!-- 페이지바 -->
 		<div id="pagebar">${pagebar}</div>
 		
-		<div>
+		<div class="group">
 			<!-- 
 			<button type="button" class="back" onclick="location.href='';"></button> 
 			-->
 			<c:if test="${not empty id}">
-			<button type="button" class="add primary" onclick="location.href='/toy/board/add.do';">쓰기</button>
+			<button type="button" class="add primary" onclick="location.href='/toy/board/add.do?reply=n';">쓰기</button>
 			</c:if>
 		</div>
 		
