@@ -2,8 +2,8 @@ show user; -- system
 
 
 alter session set "_oracle_script" = true;
-create user toy identified by java1234;
-grant connect, resource, dba to toy;
+create user jspProject identified by java1234;
+grant connect, resource, dba to jspProject;
 
 show user; -- toy
 
